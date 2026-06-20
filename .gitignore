@@ -19,7 +19,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-model/
+# Ignore only binary weights, allow tracker/config files in model/
 *.bin
 __pycache__/
 *.pyc
