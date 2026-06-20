@@ -100,6 +100,30 @@ class IndoBERTABSA(nn.Module):
 # =====================================================
 
 def load_model():
+    import os
+    import urllib.request
+    import streamlit as st
+
+    model_path = "model/model_indobert_absa/pytorch_model.bin"
+    
+    # Check if the weight file is missing
+    if not os.path.exists(model_path):
+        # Read from streamlit secrets, fallback to default Hugging Face repository URL
+        download_url = st.secrets.get("MODEL_URL", "https://huggingface.co/azzriala/indobert-absa/resolve/main/pytorch_model.bin")
+        
+        try:
+            # Ensure the directory exists
+            os.makedirs(os.path.dirname(model_path), exist_ok=True)
+            
+            # Show a download info message in Streamlit
+            st.info("ℹ️ Mengunduh bobot model IndoBERT ABSA (~498 MB) untuk pertama kalinya. Proses ini memerlukan waktu beberapa menit...")
+            
+            # Download file
+            urllib.request.urlretrieve(download_url, model_path)
+            st.success("✅ Bobot model berhasil diunduh!")
+        except Exception as e:
+            # Raise exception so app fallback takes over in app.py
+            raise FileNotFoundError(f"Gagal mengunduh bobot model dari {download_url}: {e}")
 
     tokenizer = AutoTokenizer.from_pretrained(
         "model/model_indobert_absa"
@@ -109,7 +133,7 @@ def load_model():
 
     model.load_state_dict(
         torch.load(
-            "model/model_indobert_absa/pytorch_model.bin",
+            model_path,
             map_location=torch.device("cpu")
         )
     )
