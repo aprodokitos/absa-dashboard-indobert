@@ -2,47 +2,6 @@
 
 Dashboard Aspect-Based Sentiment Analysis (ABSA) terhadap respons publik mengenai kenaikan kurs Dolar AS terhadap Rupiah menggunakan IndoBERT dan Explainable AI (SHAP).
 
-## Fitur
-
-* 🏠 Overview Penelitian
-* 🔍 Exploratory Data Analysis (EDA)
-* 🎯 Aspect-Based Sentiment Analysis
-* 📈 Evaluasi Model
-* 🔬 Explainable AI (SHAP)
-* 💡 Insight & Rekomendasi
-
----
-
-## Struktur Folder
-
-```text
-absa_dashboard/
-├── app.py
-├── requirements.txt
-├── assets/
-│   └── shap/
-│       ├── shap_aspect.png
-│       └── shap_sentiment.png
-├── data/
-│   ├── dolar_rupiah.csv
-│   ├── dolar_rupiah_train.csv
-│   └── dolar_rupiah_test.csv
-├── model/
-│   └── model_indobert_absa/
-│       ├── pytorch_model.bin
-│       ├── tokenizer.json
-│       └── tokenizer_config.json
-└── pages/
-    ├── 1_Overview.py
-    ├── 2_EDA.py
-    ├── 3_ABSA.py
-    ├── 4_Evaluasi_Model.py
-    ├── 5_Explainable_AI.py
-    └── 6_Insight_Rekomendasi.py
-```
-
----
-
 ## Persiapan Model
 
 Repository ini tidak menyertakan model IndoBERT hasil fine-tuning karena ukuran file melebihi batas GitHub.
@@ -95,7 +54,7 @@ pip install -r requirements.txt
 ## Menjalankan Dashboard
 
 ```bash
-python -m streamlit run debug.py
+python -m streamlit run app.py
 ```
 
 Dashboard akan berjalan pada:
